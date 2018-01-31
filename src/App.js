@@ -22,9 +22,6 @@ export default class App extends Component<{}> {
                    hideNavBar
                    initial={true}
             />
-            <Scene key="unAuth"
-                   backButtonImage={require('../assets/img/navigation_back_button.png')}
-            >
               <Scene key="signIn"
                      component={SignInComponent}
                      hideNavBar
@@ -37,7 +34,6 @@ export default class App extends Component<{}> {
                      titleStyle={{ alignSelf: 'center', marginRight: 50, color: '#304250', fontWeight: 'bold' }}
                      initial={false}
               />
-            </Scene>
             <Scene key="upcomingDeliveries"
                    component={UpcomingDeliveries}
                    hideNavBar

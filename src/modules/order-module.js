@@ -89,7 +89,7 @@ const deliverOrderAction = createCustomAction(CHANGE_ORDER_STATUS, function (dat
 });
 
 const selectOrderAction = createCustomAction(SELECT_ORDER, function (data) {
-  setTimeout(() => Actions.orderDetails({ type: 'replace' }), 0);
+  setTimeout(() => Actions.orderDetails({  }), 0);
   return { ...data };
 });
 

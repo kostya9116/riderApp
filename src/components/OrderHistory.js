@@ -102,6 +102,7 @@ const KeyboardAvoidingView = styled.KeyboardAvoidingView`
 
 const ScrollView = styled.ScrollView`
         flex: 1;
+        paddingVertical: 10;
 `;
 
 const ViewContainer = styled.View`
@@ -141,6 +142,6 @@ const InformationContentContainer = styled.View`
 const Text = styled.Text`
        color: ${props => props.primary ? 'rgba(255, 255, 255, 0.7)' : '#304250'}; 
        textDecorationLine: ${props => props.underline ? 'underline' : 'none'}; 
-       textDecorationColor: ${props => props.underline ? '#304250' : 'transparent'}; 
+       textDecorationColor: ${props => props.underline ? 'rgba(255, 255, 255, 0.7)' : 'transparent'}; 
        lineHeight: 25;
 `;

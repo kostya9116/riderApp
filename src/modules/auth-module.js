@@ -30,7 +30,7 @@ const signOutUserAction = createCustomAction(SIGN_OUT_USER_ACTION, function () {
   return authService.logout()
     .then(result => {
       this.dispatch(commonActions.toggleLoaderAction('', false));
-      setTimeout(() => Actions.signIn({ type: 'replace' }), 0);
+      setTimeout(() => Actions.signIn({ type: 'reset' }), 0);
       storageService.removeRiderInfo();
       return { isLoggedIn: false };
     }).catch(err => {
@@ -47,20 +47,21 @@ const trialSignInAction = createCustomAction(TRIAL_SIGN_IN_ACTION, function () {
   const me = this;
   return storageService.checkRiderInfo()
     .then(result => {
-      const { rider } = result
+      const rider = result.rider ? result.rider : result;
       this.dispatch(commonActions.toggleLoaderAction('', false));
       if ( !rider || !rider.authentication_token ) {
-        Actions.signIn({ type: 'replace' });
+        Actions.signIn({ type: 'reset' });
         return { isLoggedIn: false };
       }
       BaseRESTService.token = rider.authentication_token;
+      BaseRESTService.email = rider.email;
       const riderService = new RiderService();
       return riderService.getCurrentRiderInfo().then(res => {
         const { rider } = res.data.data;
         return successLoginHandler.call(me, rider)
       });
     }).catch(err => {
-      Actions.signIn({ type: 'replace' });
+      Actions.signIn({ type: 'reset' });
       return { isLoggedIn: false };
     });
 });
@@ -72,7 +73,7 @@ async function successLoginHandler(rider) {
   const storageService = new StorageService();
   await storageService.saveRiderInfo(rider);
   this.dispatch(commonActions.toggleLoaderAction('', false));
-  setTimeout(() => Actions.upcomingDeliveries({ type: 'replace' }), 0);
+  setTimeout(() => Actions.upcomingDeliveries({ type: 'reset' }), 0);
   return {
     data: rider,
     message: '',
@@ -83,7 +84,7 @@ async function successLoginHandler(rider) {
 function faultLoginHandler(err) {
   this.dispatch(commonActions.toggleLoaderAction('', false));
   return {
-    err: err.response.data,
+    err: err.response ? err.response.data : err.name,
     isLoggedIn: false
   };
 }
