@@ -47,11 +47,7 @@ const trialSignInAction = createCustomAction(TRIAL_SIGN_IN_ACTION, function () {
   const me = this;
   return storageService.checkRiderInfo()
     .then(result => {
-<<<<<<< HEAD
-      const { rider } = result;
-=======
       const rider = result.rider ? result.rider : result;
->>>>>>> 7423797b999eabba0d4828a8f5a9d68034d44039
       this.dispatch(commonActions.toggleLoaderAction('', false));
       if ( !rider || !rider.authentication_token ) {
         Actions.signIn({ type: 'reset' });
