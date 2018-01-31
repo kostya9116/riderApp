@@ -34,7 +34,6 @@ export default class OrderDetails extends Component {
   updateData(data) {
     const { id } = !!data.user ? data.user : { id: '' };
     const { isLoading, order } = data;
-    console.log("ORDER", order);
     const buttonName = this.updateButtonName(order.status);
     this.setState({ isLoading, order, riderID: id, buttonName });
   }

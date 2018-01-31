@@ -25,7 +25,6 @@ const setupServices = () => {
     if (res.status > 400) {
       const err = new Error('Server error');
       err.response = res;
-      console.log(err);
       throw err;
     }
     return res;

@@ -39,8 +39,6 @@ export default class BaseRESTService {
     delete options.withCredentials;
 
     return fetch(requestUrl, options).then(response => BaseRESTService.defaultParser ? BaseRESTService.defaultParser(response) : response).catch(err => {
-      console.log('BaseRESTService error: ', err.name);
-      console.log(err);
       throw err;
     });
   }

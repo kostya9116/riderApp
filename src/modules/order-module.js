@@ -112,7 +112,6 @@ const orderReducer = createReducer(initialState, ({
         errorMessage: actionPayload.err.message
       };
     }
-    console.log('UPCOMING', actionPayload.data)
     return {
       ...state,
       upcomingDeliveries: actionPayload.data,
@@ -128,7 +127,6 @@ const orderReducer = createReducer(initialState, ({
         errorMessage: actionPayload.err.message
       };
     }
-    console.log('PAST', actionPayload.data)
     return {
       ...state,
       pastDeliveries: actionPayload.data,
