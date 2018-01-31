@@ -30,7 +30,7 @@ const signOutUserAction = createCustomAction(SIGN_OUT_USER_ACTION, function () {
   return authService.logout()
     .then(result => {
       this.dispatch(commonActions.toggleLoaderAction('', false));
-      setTimeout(() =>  Actions.signIn({ type: 'reset' }), 0);
+      setTimeout(() => Actions.signIn({ type: 'reset' }), 0);
       storageService.removeRiderInfo();
       return { isLoggedIn: false };
     }).catch(err => {
@@ -47,13 +47,18 @@ const trialSignInAction = createCustomAction(TRIAL_SIGN_IN_ACTION, function () {
   const me = this;
   return storageService.checkRiderInfo()
     .then(result => {
+<<<<<<< HEAD
       const { rider } = result;
+=======
+      const rider = result.rider ? result.rider : result;
+>>>>>>> 7423797b999eabba0d4828a8f5a9d68034d44039
       this.dispatch(commonActions.toggleLoaderAction('', false));
       if ( !rider || !rider.authentication_token ) {
         Actions.signIn({ type: 'reset' });
         return { isLoggedIn: false };
       }
       BaseRESTService.token = rider.authentication_token;
+      BaseRESTService.email = rider.email;
       const riderService = new RiderService();
       return riderService.getCurrentRiderInfo().then(res => {
         const { rider } = res.data.data;
@@ -83,7 +88,7 @@ async function successLoginHandler(rider) {
 function faultLoginHandler(err) {
   this.dispatch(commonActions.toggleLoaderAction('', false));
   return {
-    err: err.response.data,
+    err: err.response ? err.response.data : err.name,
     isLoggedIn: false
   };
 }

@@ -200,7 +200,7 @@ const Button = styled.TouchableOpacity`
 const Text = styled.Text`
        color: rgba(255, 255, 255, 0.7); 
        textDecorationLine: ${props => props.underline ? 'underline' : 'none'}; 
-       textDecorationColor: ${props => props.underline ? '#304250' : 'transparent'}; 
+       textDecorationColor: ${props => props.underline ? 'rgba(255, 255, 255, 0.7)' : 'transparent'}; 
        lineHeight: ${props => props.underline ? '19' : '17'}; 
        marginVertical: 5;
        lineHeight: 20; 
