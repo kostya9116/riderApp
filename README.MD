@@ -20,3 +20,5 @@ Note* native-base may require additional setup, please follow installation messa
 ```js
 react-native link
 ```
+
+*:heavy_exclamation_mark: In case of error*
