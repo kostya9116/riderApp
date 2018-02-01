@@ -45,12 +45,11 @@ export default class BaseRESTService {
 
   formWithParams(params, fData, namespace = '') {
     const formData = fData || new FormData();
-
     for ( const key in params ) {
       if ( params.hasOwnProperty(key) ) {
         const value = params[ key ];
         const fullNS = namespace ? `${namespace}[${key}]` : key;
-        if ( typeof value === 'object' && !(value instanceof File) ) {
+        if ( typeof value === 'object' ) {
           this.formWithParams(value, formData, key)
         } else {
           formData.append(fullNS, params[ key ]);
